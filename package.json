@@ -1,0 +1,14 @@
+{
+  "name": "fr-renovations",
+  "private": true,
+  "workspaces": ["shared", "backend", "web", "infrastructure"],
+  "scripts": {
+    "dev:api": "npm run dev -w backend",
+    "dev:web": "npm run dev -w web",
+    "test": "npm test -w shared -w backend",
+    "typecheck": "npm run typecheck -w shared -w backend -w web -w infrastructure",
+    "build": "npm run build -w backend -w web",
+    "synth": "npm run synth -w infrastructure"
+  },
+  "engines": { "node": ">=22" }
+}

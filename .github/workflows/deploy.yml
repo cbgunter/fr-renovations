@@ -1,0 +1,93 @@
+name: Test and deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-1
+  STACK: FrRenovationsStack
+  NODE_VERSION: '22'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build -w web
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # GitHub OIDC -> AWS role, no stored keys
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - run: npm ci
+
+      - name: Build API bundle
+        run: npm run build -w backend
+
+      - name: Deploy infrastructure + API
+        working-directory: infrastructure
+        run: npx cdk deploy ${{ env.STACK }} --require-approval never
+
+      - name: Read stack outputs
+        id: out
+        run: |
+          get() { aws cloudformation describe-stacks --stack-name "$STACK" \
+            --query "Stacks[0].Outputs[?OutputKey=='$1'].OutputValue" --output text; }
+          echo "bucket=$(get WebBucketName)" >> "$GITHUB_OUTPUT"
+          echo "dist=$(get DistributionId)" >> "$GITHUB_OUTPUT"
+          echo "client=$(get UserPoolClientId)" >> "$GITHUB_OUTPUT"
+
+      - name: Build web
+        run: npm run build -w web
+        env:
+          VITE_USER_POOL_CLIENT_ID: ${{ steps.out.outputs.client }}
+
+      - name: Upload site and invalidate cache
+        working-directory: web/dist
+        env:
+          BUCKET: ${{ steps.out.outputs.bucket }}
+          DIST: ${{ steps.out.outputs.dist }}
+        run: |
+          # Hashed assets never change; HTML must always be fresh.
+          # photos/ is owned by the admin "Website photos" uploader - never delete it.
+          aws s3 sync . "s3://$BUCKET/" --delete --exclude "*.html" --exclude "photos/*" \
+            --cache-control "public, max-age=31536000, immutable"
+          aws s3 sync . "s3://$BUCKET/" --exclude "*" --include "*.html" \
+            --cache-control "no-cache"
+          for f in robots.txt sitemap.xml favicon.svg manifest.webmanifest; do
+            aws s3 cp "$f" "s3://$BUCKET/$f" --cache-control "public, max-age=3600"
+          done
+          aws cloudfront create-invalidation --distribution-id "$DIST" --paths "/*" > /dev/null
+
+      - name: Smoke test
+        run: |
+          curl -fsS https://renovations.caseyhunter.net/ | grep -q "Built right by someone"
+          curl -fsS https://renovations.caseyhunter.net/api/health | grep -q '"ok":true'
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://renovations.caseyhunter.net/api/admin/leads)" = "401"

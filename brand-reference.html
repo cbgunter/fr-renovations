@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand reference — First Responders Renovations</title>
+<meta name="description" content="Design tokens and UI components for First Responders Renovations, a firefighter-owned general contractor in Downers Grove, IL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   1. TOKENS — copy this block into the project's global CSS
+   ========================================================= */
+:root {
+  --frr-canvas: #F4EFE6;
+  --frr-paper: #FBF8F3;
+  --frr-sand: #EFE8DC;
+  --frr-line: #DED5C6;
+  --frr-line-strong: #CFC3AF;
+  --frr-ink: #23201B;
+  --frr-ink-2: #4A433B;
+  --frr-muted: #665D52;
+  --frr-flannel: #9B3A2A;
+  --frr-flannel-dark: #7E2E21;
+  --frr-flannel-tint: #F1DCD6;
+  --frr-duck: #EBE1CD;
+  --frr-duck-line: #C8B48E;
+  --frr-duck-ink: #4A3B22;
+  --frr-photo: #E3D7C1;
+  --frr-on-dark: #EDE6DA;
+  --frr-on-dark-muted: #BDB3A4;
+  --frr-hover: #EBE2D2;
+
+  --frr-font-display: "Fraunces", Georgia, serif;
+  --frr-font-body: "Inter", system-ui, sans-serif;
+  --frr-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --frr-radius-tag: 4px;
+  --frr-radius-control: 8px;
+  --frr-radius-card: 12px;
+  --frr-radius-lg: 14px;
+  --frr-radius-pill: 999px;
+  --frr-tap: 44px;
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--frr-canvas);
+  color: var(--frr-ink);
+  font-family: var(--frr-font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--frr-flannel); }
+a:hover { color: var(--frr-flannel-dark); }
+:focus-visible { outline: 2px solid var(--frr-flannel); outline-offset: 2px; }
+h1, h2, h3 { margin: 0; font-family: var(--frr-font-display); font-weight: 500; }
+p { margin: 0; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+.container { max-width: 1200px; margin: 0 auto; padding-inline: clamp(20px, 4vw, 48px); }
+.stack { display: flex; flex-direction: column; gap: var(--gap, 16px); }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, 12px); }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min, 320px)), 1fr)); gap: var(--gap, 28px); }
+
+/* =========================================================
+   3. TYPE
+   ========================================================= */
+.h1 { font-size: clamp(40px, 5.2vw, 68px); line-height: 1.04; letter-spacing: -0.02em; }
+.h2 { font-size: clamp(32px, 3.6vw, 44px); line-height: 1.1; letter-spacing: -0.015em; }
+.h-admin { font-size: 38px; line-height: 1.1; letter-spacing: -0.015em; }
+.h-card { font-size: 24px; line-height: 1.15; }
+.lede { font-size: 19px; line-height: 1.6; color: var(--frr-ink-2); max-width: 34em; }
+.body { font-size: 17px; line-height: 1.7; color: var(--frr-ink-2); max-width: 34em; }
+.meta { font-size: 14px; color: var(--frr-muted); }
+.eyebrow { font-family: var(--frr-font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--frr-flannel); }
+.eyebrow--muted { color: var(--frr-muted); font-size: 12px; }
+.num { font-family: var(--frr-font-mono); font-weight: 500; }
+.num-lg { font-family: var(--frr-font-mono); font-weight: 500; font-size: 26px; }
+
+/* =========================================================
+   4. COMPONENTS
+   ========================================================= */
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: var(--frr-tap); padding: 0 18px;
+  border-radius: var(--frr-radius-control); border: 1px solid transparent;
+  font: inherit; font-size: 15px; font-weight: 500; text-decoration: none; cursor: pointer;
+  transition: background-color .15s, color .15s;
+}
+.btn-lg { min-height: 52px; padding: 0 24px; font-size: 16px; }
+.btn-primary { background: var(--frr-flannel); color: var(--frr-paper); }
+.btn-primary:hover { background: var(--frr-flannel-dark); color: var(--frr-paper); }
+.btn-ghost { background: transparent; color: var(--frr-ink); border-color: var(--frr-line-strong); }
+.btn-ghost:hover { background: var(--frr-hover); color: var(--frr-ink); }
+.btn-accent { background: transparent; color: var(--frr-flannel); border-color: var(--frr-flannel); font-weight: 600; }
+.btn-accent:hover { background: var(--frr-hover); color: var(--frr-flannel-dark); }
+
+/* Fields */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label, .field legend { font-size: 14px; font-weight: 500; }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--frr-ink);
+  background: var(--frr-paper); border: 1px solid var(--frr-line-strong);
+  border-radius: var(--frr-radius-control); padding: 12px 14px; min-height: 48px;
+}
+.field textarea { min-height: 112px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--frr-flannel); outline-offset: 1px; border-color: var(--frr-flannel); }
+
+/* Segmented choice */
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice {
+  min-height: var(--frr-tap); padding: 0 16px; border-radius: 10px;
+  border: 1px solid var(--frr-line-strong); background: var(--frr-paper); color: var(--frr-ink);
+  font: inherit; font-size: 15px; font-weight: 500; cursor: pointer;
+}
+.choice[aria-pressed="true"] { background: var(--frr-ink); border-color: var(--frr-ink); color: var(--frr-paper); }
+
+/* Stepper */
+.stepper { display: grid; grid-template-columns: 56px minmax(0, 1fr) 56px; gap: 8px; max-width: 360px; }
+.stepper button {
+  height: 56px; border-radius: 12px; border: 1px solid var(--frr-line-strong);
+  background: var(--frr-paper); color: var(--frr-ink); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.stepper button:hover { background: var(--frr-hover); }
+.stepper .value { display: flex; align-items: baseline; justify-content: center; gap: 8px; border-bottom: 2px solid var(--frr-ink); padding-top: 12px; }
+.stepper output { font-family: var(--frr-font-mono); font-size: 26px; font-weight: 500; }
+
+/* Cards */
+.card { background: var(--frr-paper); border: 1px solid var(--frr-line); border-radius: var(--frr-radius-card); padding: 20px; }
+.card-lg { border-radius: var(--frr-radius-lg); padding: clamp(20px, 3vw, 32px); }
+
+/* Pills */
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: var(--frr-radius-pill); border: 1px solid transparent; white-space: nowrap; }
+.pill--new   { background: var(--frr-paper); color: var(--frr-flannel); border-color: var(--frr-flannel); }
+.pill--visit { background: var(--frr-duck); color: var(--frr-duck-ink); }
+.pill--sent  { background: var(--frr-paper); color: var(--frr-ink); border-color: var(--frr-ink); }
+.pill--won   { background: var(--frr-ink); color: var(--frr-paper); }
+.pill--lost  { background: var(--frr-sand); color: var(--frr-muted); }
+.chip { padding: 8px 14px; border: 1px solid var(--frr-line-strong); border-radius: var(--frr-radius-pill); font-size: 15px; }
+.tag { font-family: var(--frr-font-mono); font-size: 11px; color: var(--frr-duck-ink); background: var(--frr-duck); padding: 5px 8px; border-radius: var(--frr-radius-tag); }
+
+/* Priority */
+.pri { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; }
+.pri::before { content: ""; width: 9px; height: 9px; border-radius: 2px; border: 1.5px solid currentColor; }
+.pri--high { color: var(--frr-flannel); }
+.pri--high::before { background: currentColor; }
+.pri--normal { color: var(--frr-ink-2); }
+.pri--low { color: var(--frr-muted); }
+
+/* Calendar events */
+.event { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: var(--frr-radius-control); border: 1px solid transparent; font-size: 13px; min-height: 52px; }
+.event .time { font-family: var(--frr-font-mono); font-size: 11px; }
+.event strong { font-weight: 600; }
+.event--visit { background: var(--frr-duck); border-color: var(--frr-duck-line); color: var(--frr-ink); }
+.event--done  { background: #F2ECE1; border-color: var(--frr-line); color: var(--frr-ink-2); }
+.event--job   { background: var(--frr-flannel); border-color: var(--frr-flannel); color: var(--frr-paper); }
+.event--hold  { background: var(--frr-paper); border: 1.5px dashed var(--frr-flannel); color: var(--frr-flannel); }
+.event--selected { box-shadow: 0 0 0 2px var(--frr-ink); }
+
+/* Plaid — the one flourish. Bands and small marks only. */
+.plaid {
+  background-color: var(--frr-flannel);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(20,10,8,.28) 0 7px, transparent 7px 19px, rgba(251,243,230,.16) 19px 21px, transparent 21px 38px),
+    repeating-linear-gradient(90deg, rgba(20,10,8,.28) 0 7px, transparent 7px 19px, rgba(251,243,230,.16) 19px 21px, transparent 21px 38px);
+}
+.plaid-band { height: 10px; }
+.plaid-mark { width: 32px; height: 32px; border-radius: 8px; flex: none; }
+
+/* Photo placeholder */
+.photo-ph {
+  background-color: var(--frr-photo);
+  background-image: repeating-linear-gradient(135deg, rgba(35,32,27,.06) 0 1px, transparent 1px 11px);
+  border-radius: var(--frr-radius-lg); display: flex; align-items: flex-end; padding: 14px; aspect-ratio: 4 / 3;
+}
+.photo-ph span { font-family: var(--frr-font-mono); font-size: 11px; color: var(--frr-ink-2); background: var(--frr-canvas); padding: 5px 8px; border-radius: var(--frr-radius-tag); }
+
+/* Wordmark */
+.wordmark { display: inline-flex; align-items: baseline; gap: 10px; color: var(--frr-ink); text-decoration: none; }
+.wordmark b { font-family: var(--frr-font-display); font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
+.wordmark span { font-family: var(--frr-font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--frr-muted); }
+
+/* =========================================================
+   5. PAGE-ONLY (style-guide chrome; don't copy)
+   ========================================================= */
+.sg-section { padding-block: clamp(48px, 6vw, 80px); border-top: 1px solid var(--frr-line); }
+.sg-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.swatch { border: 1px solid var(--frr-line); border-radius: var(--frr-radius-card); overflow: hidden; background: var(--frr-paper); }
+.swatch .chip-color { height: 88px; border-bottom: 1px solid var(--frr-line); }
+.swatch .info { padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+.swatch code { font-family: var(--frr-font-mono); font-size: 12px; color: var(--frr-muted); }
+.spec { display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--frr-line); }
+.spec code { font-family: var(--frr-font-mono); font-size: 12px; color: var(--frr-muted); }
+@media (max-width: 640px) { .spec { grid-template-columns: 1fr; gap: 6px; } }
+.lead-row { display: grid; grid-template-columns: 84px minmax(0, 1.6fr) minmax(0, 1fr) 128px; gap: 16px; align-items: center; padding: 14px 18px; border-bottom: 1px solid #E9E1D3; }
+.lead-row:last-child { border-bottom: 0; }
+.table-box { overflow-x: auto; background: var(--frr-paper); border: 1px solid var(--frr-line); border-radius: var(--frr-radius-card); }
+.dont { font-size: 15px; color: var(--frr-ink-2); padding: 10px 0; border-bottom: 1px solid var(--frr-line); }
+</style>
+</head>
+<body>
+
+<header style="border-bottom: 1px solid var(--frr-line)">
+  <div class="container row" style="justify-content: space-between; padding-block: 18px; --gap: 16px 32px">
+    <a class="wordmark" href="#top"><b>First Responders</b><span>Renovations</span></a>
+    <nav aria-label="Sections" class="row" style="--gap: 8px 24px; font-size: 15px">
+      <a href="#color">Color</a><a href="#type">Type</a><a href="#components">Components</a><a href="#admin">Admin</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Sample hero: the public-site pattern -->
+  <section class="container grid-auto" style="--min: 440px; --gap: 56px; align-items: center; padding-block: clamp(48px, 7vw, 96px) 64px">
+    <div class="stack" style="--gap: 26px">
+      <p class="eyebrow eyebrow--muted">Brand reference · Downers Grove, IL</p>
+      <h1 class="h1">Built right by someone who's seen what happens when it isn't.</h1>
+      <p class="lede">First Responders Renovations is owned and run by a working Downers Grove firefighter/EMT. This page is the living reference for how everything we put on a screen should look and sound.</p>
+      <div class="row">
+        <a class="btn btn-primary btn-lg" href="#components">Get a free estimate</a>
+        <a class="btn btn-ghost btn-lg" href="#color">See the palette</a>
+      </div>
+    </div>
+    <div class="photo-ph" role="img" aria-label="Photo placeholder: finished porch at golden hour" style="aspect-ratio: 4 / 5"><span>Photo · finished porch, golden hour</span></div>
+  </section>
+
+  <div class="plaid plaid-band" aria-hidden="true"></div>
+
+  <!-- COLOR -->
+  <section id="color" class="container sg-section" style="border-top: 0">
+    <div class="sg-head">
+      <p class="eyebrow">01 · Color</p>
+      <h2 class="h2">Canvas, ink and one flannel red.</h2>
+      <p class="body">Warm neutrals do the work; flannel red marks the one thing to do next. Tan "duck canvas" is for informational fills like estimate visits.</p>
+    </div>
+    <div class="grid-auto" style="--min: 170px; --gap: 14px">
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-canvas)"></div><div class="info"><strong>Canvas</strong><code>--frr-canvas #F4EFE6</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-paper)"></div><div class="info"><strong>Paper</strong><code>--frr-paper #FBF8F3</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-sand)"></div><div class="info"><strong>Sand</strong><code>--frr-sand #EFE8DC</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-line)"></div><div class="info"><strong>Line</strong><code>--frr-line #DED5C6</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-ink)"></div><div class="info"><strong>Ink</strong><code>--frr-ink #23201B</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-ink-2)"></div><div class="info"><strong>Ink 2</strong><code>--frr-ink-2 #4A433B</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-muted)"></div><div class="info"><strong>Muted</strong><code>--frr-muted #665D52</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-flannel)"></div><div class="info"><strong>Flannel</strong><code>--frr-flannel #9B3A2A</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-flannel-dark)"></div><div class="info"><strong>Flannel dark</strong><code>--frr-flannel-dark #7E2E21</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-duck)"></div><div class="info"><strong>Duck</strong><code>--frr-duck #EBE1CD</code></div></div>
+      <div class="swatch"><div class="chip-color" style="background: var(--frr-duck-line)"></div><div class="info"><strong>Duck line</strong><code>--frr-duck-line #C8B48E</code></div></div>
+      <div class="swatch"><div class="chip-color plaid"></div><div class="info"><strong>Plaid</strong><code>.plaid — bands &amp; marks only</code></div></div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section id="type" class="container sg-section">
+    <div class="sg-head">
+      <p class="eyebrow">02 · Typography</p>
+      <h2 class="h2">A soft serif, a plain sans, a stamped mono.</h2>
+    </div>
+    <div>
+      <div class="spec"><code>Hero H1 · Fraunces 500</code><span class="h1" style="font-family: var(--frr-font-display); font-size: clamp(34px, 4vw, 52px)">Good work, done right.</span></div>
+      <div class="spec"><code>Section H2 · Fraunces 500</code><span class="h2" style="font-family: var(--frr-font-display)">The jobs we do most.</span></div>
+      <div class="spec"><code>Card title · Fraunces 24</code><span class="h-card" style="font-family: var(--frr-font-display)">Decks &amp; porches</span></div>
+      <div class="spec"><code>Lede · Inter 19</code><span class="lede">Quoted in writing, built to code, and finished the way we'd want it in our own homes.</span></div>
+      <div class="spec"><code>Body · Inter 17</code><span class="body">One person leads your job from the first visit to the final walk-through, and you'll have a direct number the whole time.</span></div>
+      <div class="spec"><code>Eyebrow · Plex Mono 13</code><span class="eyebrow">Coverage area</span></div>
+      <div class="spec"><code>Numbers · Plex Mono 500</code><span class="num-lg">$14,820 · 224 sq ft · 8:00 – 9:00a</span></div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section id="components" class="container sg-section">
+    <div class="sg-head">
+      <p class="eyebrow">03 · Components</p>
+      <h2 class="h2">Big targets, plain labels.</h2>
+      <p class="body">Every control is at least 44px tall. Selected states fill with ink; flannel red is saved for the action.</p>
+    </div>
+
+    <div class="grid-auto" style="--min: 340px; --gap: 28px; align-items: start">
+      <div class="card stack" style="--gap: 18px">
+        <h3 class="h-card">Buttons</h3>
+        <div class="row">
+          <button class="btn btn-primary" type="button">Send estimate</button>
+          <button class="btn btn-ghost" type="button">Cancel</button>
+          <button class="btn btn-accent" type="button">Estimate</button>
+        </div>
+        <p class="meta">Primary: one per screen. Ghost: secondary. Accent outline: the contextual action in a row of ghosts.</p>
+      </div>
+
+      <div class="card stack" style="--gap: 18px">
+        <h3 class="h-card">Segmented choice</h3>
+        <div class="choices" role="group" aria-label="Decking material" data-choices>
+          <button class="choice" type="button" aria-pressed="false">Pressure-treated</button>
+          <button class="choice" type="button" aria-pressed="false">Cedar</button>
+          <button class="choice" type="button" aria-pressed="true">Composite</button>
+        </div>
+        <p class="meta">Used for estimator options, priority and send-by.</p>
+      </div>
+
+      <div class="card stack" style="--gap: 18px">
+        <h3 class="h-card">Stepper</h3>
+        <div class="stack" style="--gap: 10px">
+          <span style="font-size: 15px; font-weight: 600">Deck area</span>
+          <div class="stepper" data-stepper data-step="10" data-min="40">
+            <button type="button" aria-label="Less deck area" data-dec><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+            <div class="value"><output>224</output><span class="meta">sq ft</span></div>
+            <button type="button" aria-label="More deck area" data-inc><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+        <span class="tag" style="align-self: flex-start">Sample rates · set yours in Settings</span>
+      </div>
+
+      <form class="card stack" style="--gap: 16px" aria-label="Sample contact form" onsubmit="return false">
+        <h3 class="h-card">Form fields</h3>
+        <div class="field"><label for="f-name">Name</label><input id="f-name" type="text" autocomplete="name"></div>
+        <div class="field"><label for="f-job">What's the job?</label>
+          <select id="f-job"><option>Choose one</option><option>Deck or porch</option><option>Kitchen remodel</option><option>Bathroom remodel</option><option>Roofing</option><option>Siding &amp; windows</option><option>Basement finishing</option></select>
+        </div>
+        <div class="field"><label for="f-msg">Tell us a little about it</label><textarea id="f-msg" placeholder="Size, what's wrong, when you'd like it done…"></textarea></div>
+        <button class="btn btn-primary btn-lg" type="submit">Send request</button>
+      </form>
+
+      <article class="stack" style="--gap: 14px">
+        <div class="photo-ph" role="img" aria-label="Photo placeholder: composite deck with stairs"><span>Photo · deck with stairs &amp; rail</span></div>
+        <h3 class="h-card">Decks &amp; porches</h3>
+        <p class="body" style="font-size: 16px">New decks, rebuilds and repairs in pressure-treated, cedar or composite, with stairs and railings to code.</p>
+      </article>
+
+      <div class="card stack" style="--gap: 18px">
+        <h3 class="h-card">Chips &amp; tags</h3>
+        <ul class="row" style="list-style: none; margin: 0; padding: 0; --gap: 10px" aria-label="Towns we serve">
+          <li class="chip" style="border-color: var(--frr-flannel); font-weight: 500">Downers Grove</li>
+          <li class="chip">Westmont</li><li class="chip">Lisle</li><li class="chip">Woodridge</li>
+        </ul>
+        <p class="meta">Town chips are real text — they matter for local SEO.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN PATTERNS -->
+  <section id="admin" class="container sg-section">
+    <div class="sg-head">
+      <p class="eyebrow">04 · Admin patterns</p>
+      <h2 class="h2">Status you can read across the truck.</h2>
+      <p class="body">Every status and priority carries a word, not just a color. States differ in lightness so they hold up in sun glare.</p>
+    </div>
+
+    <div class="stack" style="--gap: 32px">
+      <div class="row" style="--gap: 10px">
+        <span class="pill pill--new">Needs a visit</span>
+        <span class="pill pill--visit">Today · 8:00a</span>
+        <span class="pill pill--sent">Estimate out</span>
+        <span class="pill pill--won">Won</span>
+        <span class="pill pill--lost">Lost</span>
+        <span style="width: 1px; height: 24px; background: var(--frr-line); margin-inline: 8px" aria-hidden="true"></span>
+        <span class="pri pri--high">High</span>
+        <span class="pri pri--normal">Normal</span>
+        <span class="pri pri--low">Low</span>
+      </div>
+
+      <div class="table-box">
+        <div style="min-width: 600px">
+          <div class="lead-row eyebrow eyebrow--muted" style="font-size: 11px" aria-hidden="true"><span>Priority</span><span>Customer</span><span>Job</span><span>Status</span></div>
+          <div class="lead-row"><span class="pri pri--high">High</span><span class="stack" style="--gap: 2px"><strong style="font-size: 15px">Dana Kowalski</strong><span class="meta" style="font-size: 13px">1418 Elm St · web form · today 7:12a</span></span><span style="font-size: 14px">Deck rebuild</span><span class="pill pill--new" style="justify-self: start">Needs a visit</span></div>
+          <div class="lead-row"><span class="pri pri--high">High</span><span class="stack" style="--gap: 2px"><strong style="font-size: 15px">Gus Halvorsen</strong><span class="meta" style="font-size: 13px">3310 County Rd 9 · phone · Nov 11</span></span><span style="font-size: 14px">Basement finish</span><span class="pill pill--sent" style="justify-self: start">Estimate out</span></div>
+          <div class="lead-row"><span class="pri pri--normal">Normal</span><span class="stack" style="--gap: 2px"><strong style="font-size: 15px">Tom Brandt</strong><span class="meta" style="font-size: 13px">17 Hillcrest Rd · phone · Nov 3</span></span><span style="font-size: 14px">Deck rebuild</span><span class="pill pill--won" style="justify-self: start">Won</span></div>
+        </div>
+      </div>
+
+      <div class="grid-auto" style="--min: 200px; --gap: 12px">
+        <div class="event event--visit"><span class="time">8:00 – 9:00a</span><strong>Ray Okafor · roof leak</strong><span>Estimate visit</span></div>
+        <div class="event event--done"><span class="time">4p – 5p · done</span><strong>Gus Halvorsen · basement</strong><span>Estimate visit</span></div>
+        <div class="event event--job"><span class="time">Thu 19 – Fri 20</span><strong>Ostrowski · roof tear-off</strong><span>Confirmed job</span></div>
+        <div class="event event--hold"><span class="time">Sat 21 · tentative</span><strong>Rain day · Ostrowski</strong><span>Pencilled in</span></div>
+      </div>
+
+      <div class="card row" style="justify-content: space-between; --gap: 16px; background: var(--frr-paper)">
+        <div class="stack" style="--gap: 2px"><span class="meta" style="font-size: 12px">Range $13,300 – $16,300</span><span class="num-lg">$14,820</span></div>
+        <button class="btn btn-primary btn-lg" type="button">Review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DON'TS -->
+  <section class="container sg-section">
+    <div class="sg-head">
+      <p class="eyebrow">05 · Keep it honest</p>
+      <h2 class="h2">What we don't do.</h2>
+    </div>
+    <div class="grid-auto" style="--min: 300px; --gap: 0 48px">
+      <p class="dont">No fire-department names, patches, badges, flames or sirens.</p>
+      <p class="dont">No gradients, glows, heavy shadows or colored left-border cards.</p>
+      <p class="dont">No plaid backgrounds — a 10px band or a small mark only.</p>
+      <p class="dont">No invented reviews, stats or years in business. Use [placeholders].</p>
+      <p class="dont">No status shown by color alone. Always a word.</p>
+      <p class="dont">No stock "smiling contractor" photos. Real jobs only.</p>
+    </div>
+  </section>
+</main>
+
+<footer style="background: var(--frr-ink); color: var(--frr-on-dark)">
+  <div class="plaid plaid-band" aria-hidden="true"></div>
+  <div class="container row" style="justify-content: space-between; padding-block: 44px; --gap: 20px 48px">
+    <div class="stack" style="--gap: 8px">
+      <span style="font-family: var(--frr-font-display); font-size: 22px; font-weight: 600">First Responders Renovations</span>
+      <span style="font-size: 15px; color: var(--frr-on-dark-muted)">[Street], Downers Grove, IL [ZIP] · [(630) XXX-XXXX]</span>
+      <span style="font-family: var(--frr-font-mono); font-size: 12px; color: var(--frr-on-dark-muted)">Licensed &amp; insured · [Lic #]</span>
+    </div>
+    <span style="font-size: 13px; color: var(--frr-on-dark-muted)">© 2026 First Responders Renovations</span>
+  </div>
+</footer>
+
+<script>
+  // Segmented choice: one pressed at a time
+  document.querySelectorAll('[data-choices]').forEach(function (group) {
+    group.addEventListener('click', function (e) {
+      var btn = e.target.closest('.choice'); if (!btn) return;
+      group.querySelectorAll('.choice').forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+    });
+  });
+  // Stepper
+  document.querySelectorAll('[data-stepper]').forEach(function (s) {
+    var out = s.querySelector('output'), step = +s.dataset.step, min = +s.dataset.min;
+    s.querySelector('[data-dec]').addEventListener('click', function () { out.value = Math.max(min, +out.textContent - step); out.textContent = out.value; });
+    s.querySelector('[data-inc]').addEventListener('click', function () { out.value = +out.textContent + step; out.textContent = out.value; });
+  });
+</script>
+</body>
+</html>

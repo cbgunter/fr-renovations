@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /e/
+Disallow: /api/
+
+Sitemap: https://renovations.caseyhunter.net/sitemap.xml

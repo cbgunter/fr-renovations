@@ -1,0 +1,73 @@
+/* Public site layout. Components come from brand.css. */
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.skip { position: absolute; left: -9999px; top: 8px; background: var(--frr-paper); padding: 10px 14px; border-radius: var(--frr-radius-control); z-index: 10; }
+.skip:focus { left: 8px; }
+
+.site-header { position: sticky; top: 0; z-index: 5; background: var(--frr-canvas); border-bottom: 1px solid var(--frr-line); }
+.site-header__inner { justify-content: space-between; padding-block: 14px; --gap: 12px 32px; flex-wrap: nowrap; }
+.site-nav { --gap: 8px 24px; font-size: 15px; }
+.site-nav a { color: var(--frr-ink-2); text-decoration: none; padding: 10px 0; }
+.site-nav a:hover { color: var(--frr-flannel); }
+.site-header__call { font-family: var(--frr-font-mono); font-size: 14px; white-space: nowrap; }
+@media (max-width: 860px) {
+  .site-nav { display: none; }
+}
+@media (max-width: 480px) {
+  .wordmark span { display: none; }
+  .site-header__call span { font-size: 13px; }
+}
+
+.hero { --min: 420px; --gap: 48px; align-items: center; padding-block: clamp(36px, 7vw, 96px) clamp(48px, 6vw, 72px); }
+.hero__copy { --gap: 26px; }
+
+.section { padding-block: clamp(56px, 7vw, 96px); }
+.section--sand { background: var(--frr-sand); border-block: 1px solid var(--frr-line); }
+
+/* Photo with a brand placeholder underneath. If the image is missing the
+   onerror handler removes it and the placeholder caption shows. */
+.photo {
+  position: relative; margin: 0; overflow: hidden; aspect-ratio: 4 / 3;
+  border-radius: var(--frr-radius-lg);
+  background-color: var(--frr-photo);
+  background-image: repeating-linear-gradient(135deg, rgba(35,32,27,.06) 0 1px, transparent 1px 11px);
+}
+.photo--tall { aspect-ratio: 4 / 5; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo.is-empty::after {
+  content: attr(data-ph); position: absolute; left: 14px; bottom: 14px;
+  font-family: var(--frr-font-mono); font-size: 11px; color: var(--frr-ink-2);
+  background: var(--frr-canvas); padding: 5px 8px; border-radius: var(--frr-radius-tag);
+}
+
+.job { --gap: 14px; }
+.job .body { font-size: 16px; }
+
+.facts { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; }
+.facts li { display: grid; grid-template-columns: 40px 1fr; gap: 4px; padding: 14px 0; border-top: 1px solid var(--frr-line); color: var(--frr-ink-2); font-size: 16px; }
+.facts strong { color: var(--frr-ink); font-weight: 600; }
+
+.towns { list-style: none; margin: 0; padding: 0; --gap: 10px; }
+.chip { background: var(--frr-paper); }
+.chip--home { border-color: var(--frr-flannel); font-weight: 500; }
+
+.contact-list { margin: 8px 0 0; display: flex; flex-direction: column; }
+.contact-list div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 12px 0; border-top: 1px solid var(--frr-line); }
+.contact-list dt { font-family: var(--frr-font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--frr-muted); padding-top: 3px; }
+.contact-list dd { margin: 0; font-size: 17px; }
+
+.contact-form { background: var(--frr-paper); }
+.form-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; }
+.hp { position: absolute !important; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.form-error { color: var(--frr-flannel); font-weight: 500; font-size: 15px; }
+.form-done { padding: 8px 0; }
+.form-done h3 { font-size: 28px; }
+
+.site-footer { background: var(--frr-ink); color: var(--frr-on-dark); }
+.site-footer__inner { justify-content: space-between; align-items: flex-start; padding-block: 44px; --gap: 24px 48px; }
+.site-footer__name { font-family: var(--frr-font-display); font-size: 22px; font-weight: 600; }
+.site-footer__meta { font-size: 15px; color: var(--frr-on-dark-muted); }
+.site-footer a { color: var(--frr-on-dark); }
+.site-footer a:hover { color: #fff; }
+.site-footer__mono { font-family: var(--frr-font-mono); font-size: 12px; color: var(--frr-on-dark-muted); }
