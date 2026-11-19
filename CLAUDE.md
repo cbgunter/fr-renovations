@@ -34,3 +34,4 @@ Push to `main` deploys via GitHub Actions (OIDC role `fr-renovations-deploy`, re
 - CloudFront maps S3's 403 (missing file) to `/404.html`; the API must never return 403 (use 401/404).
 - `web/site.config.ts` holds `[placeholder]` business facts; placeholders are shown on the page but omitted from JSON-LD.
 - SMS is deliberately not sent from AWS (10DLC registration + fees break the budget): "Send by text" opens the phone's Messages app via an `sms:` link.
+- **Approved exception to BRAND.md "real jobs only":** the owner approved (2026-11-19) labeled CC0 example photos in `web/public/img/examples/` as stand-ins. The page tries `/photos/<slot>.webp` first and falls back to the example with an "Example photo" label; owner uploads always win. Business facts in `web/site.config.ts` stay `[placeholders]` until the owner supplies them.
