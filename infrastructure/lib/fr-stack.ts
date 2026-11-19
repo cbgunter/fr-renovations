@@ -27,6 +27,8 @@ const SITE_URL = `https://${DOMAIN}`;
 /** SES-verified domain in this account/region. */
 const MAIL_DOMAIN = 'caseyhunter.net';
 const GITHUB_REPO = 'cbgunter/fr-renovations';
+/** From `gh api repos/cbgunter/fr-renovations/actions/oidc/customization/sub`. */
+const GITHUB_REPO_IMMUTABLE = 'cbgunter@10583645/fr-renovations@1464251952';
 
 export class FrRenovationsStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -264,7 +266,11 @@ function handler(event) {
       assumedBy: new iam.WebIdentityPrincipal(github.openIdConnectProviderArn, {
         StringEquals: {
           'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
-          'token.actions.githubusercontent.com:sub': `repo:${GITHUB_REPO}:ref:refs/heads/main`,
+          // GitHub may issue either the classic or the immutable (owner@id/repo@id) subject.
+          'token.actions.githubusercontent.com:sub': [
+            `repo:${GITHUB_REPO}:ref:refs/heads/main`,
+            `repo:${GITHUB_REPO_IMMUTABLE}:ref:refs/heads/main`,
+          ],
         },
       }),
     });
