@@ -47,13 +47,14 @@ function PhotoRow({ slot, updated, onDone }: { slot: (typeof PHOTO_SLOTS)[number
     }
   };
 
-  const src = preview ?? (updated ? `/photos/${slot.id}.webp?v=${encodeURIComponent(updated)}` : null);
+  const own = preview ?? (updated ? `/photos/${slot.id}.webp?v=${encodeURIComponent(updated)}` : null);
+  const src = own ?? `/img/examples/${slot.id}.webp`;
   return (
     <li className="photo-row">
       <div className="photo-thumb">{src ? <img src={src} alt="" /> : <Icon name="photo" />}</div>
       <div className="stack" style={{ ['--gap' as string]: '2px', flex: 1, minWidth: 0 }}>
         <strong>{slot.label}</strong>
-        <span className="meta">{src ? 'On the website' : slot.hint}</span>
+        <span className="meta">{own ? 'Your photo is on the website' : `Showing an example photo. Add yours: ${slot.hint.toLowerCase()}`}</span>
       </div>
       <input
         ref={input}
@@ -63,7 +64,7 @@ function PhotoRow({ slot, updated, onDone }: { slot: (typeof PHOTO_SLOTS)[number
         onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])}
       />
       <button className="btn btn-ghost" type="button" disabled={busy} onClick={() => input.current?.click()}>
-        {busy ? 'Uploading…' : src ? 'Replace' : 'Add photo'}
+        {busy ? 'Uploading…' : own ? 'Replace' : 'Add photo'}
       </button>
     </li>
   );

@@ -22,6 +22,17 @@
 <script type="application/ld+json">
 {{JSON_LD}}
 </script>
+<script>
+  // Owner photos live at /photos/<slot>.webp (uploaded from Admin > Settings).
+  // Until one exists, show the bundled example and label it honestly.
+  function frrPhoto(img) {
+    var f = img.parentNode;
+    if (img.dataset.tried) { f.classList.remove('is-example'); f.classList.add('is-empty'); img.remove(); return; }
+    img.dataset.tried = '1';
+    f.classList.add('is-example');
+    img.src = img.getAttribute('src').replace('/photos/', '/img/examples/');
+  }
+</script>
 <script type="module" src="/src/public/main.ts"></script>
 </head>
 <body>
@@ -55,7 +66,7 @@
       </div>
     </div>
     <figure class="photo photo--tall" data-ph="Photo · finished porch, golden hour">
-      <img src="/photos/hero.webp" alt="A finished front porch by First Responders Renovations in Downers Grove" width="960" height="1200" fetchpriority="high" onerror="this.parentNode.classList.add('is-empty');this.remove()">
+      <img src="/photos/hero.webp" alt="A finished front porch by First Responders Renovations in Downers Grove" width="960" height="1200" fetchpriority="high" onerror="frrPhoto(this)">
     </figure>
   </section>
 
@@ -88,32 +99,32 @@
       </div>
       <div class="grid-auto" style="--min: 300px; --gap: 36px 28px">
         <article class="job stack">
-          <figure class="photo" data-ph="Photo · deck with stairs &amp; rail"><img src="/photos/deck.webp" alt="Composite deck with stairs and railing" width="800" height="600" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <figure class="photo" data-ph="Photo · deck with stairs &amp; rail"><img src="/photos/deck.webp" alt="Composite deck with stairs and railing" width="800" height="600" loading="lazy" onerror="frrPhoto(this)"></figure>
           <h3 class="h-card">Decks &amp; porches</h3>
           <p class="body">New decks, rebuilds and repairs in pressure-treated, cedar or composite, with stairs and railings to code.</p>
         </article>
         <article class="job stack">
-          <figure class="photo" data-ph="Photo · finished kitchen"><img src="/photos/kitchen.webp" alt="Remodeled kitchen with new cabinets and counters" width="800" height="600" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <figure class="photo" data-ph="Photo · finished kitchen"><img src="/photos/kitchen.webp" alt="Remodeled kitchen with new cabinets and counters" width="800" height="600" loading="lazy" onerror="frrPhoto(this)"></figure>
           <h3 class="h-card">Kitchen remodels</h3>
           <p class="body">Cabinets, countertops, tile and flooring, with the plumbing and electrical done by licensed trades.</p>
         </article>
         <article class="job stack">
-          <figure class="photo" data-ph="Photo · tiled shower"><img src="/photos/bath.webp" alt="Tiled walk-in shower after a bathroom remodel" width="800" height="600" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <figure class="photo" data-ph="Photo · tiled shower"><img src="/photos/bath.webp" alt="Tiled walk-in shower after a bathroom remodel" width="800" height="600" loading="lazy" onerror="frrPhoto(this)"></figure>
           <h3 class="h-card">Bathroom remodels</h3>
           <p class="body">Half baths to full primary baths. Tub-to-shower conversions, new vanities, and tile that's waterproofed underneath.</p>
         </article>
         <article class="job stack">
-          <figure class="photo" data-ph="Photo · roof line &amp; flashing"><img src="/photos/roof.webp" alt="New architectural shingle roof with step flashing" width="800" height="600" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <figure class="photo" data-ph="Photo · roof line &amp; flashing"><img src="/photos/roof.webp" alt="New architectural shingle roof with step flashing" width="800" height="600" loading="lazy" onerror="frrPhoto(this)"></figure>
           <h3 class="h-card">Roofing</h3>
           <p class="body">Full tear-offs and re-roofs. We replace soft decking, flash every wall and chimney, and haul everything away.</p>
         </article>
         <article class="job stack">
-          <figure class="photo" data-ph="Photo · new siding &amp; windows"><img src="/photos/siding.webp" alt="House front with new siding and replacement windows" width="800" height="600" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <figure class="photo" data-ph="Photo · new siding &amp; windows"><img src="/photos/siding.webp" alt="House front with new siding and replacement windows" width="800" height="600" loading="lazy" onerror="frrPhoto(this)"></figure>
           <h3 class="h-card">Siding &amp; windows</h3>
           <p class="body">Vinyl, fiber cement or wood siding, and replacement windows set, flashed and sealed properly.</p>
         </article>
         <article class="job stack">
-          <figure class="photo" data-ph="Photo · finished basement"><img src="/photos/basement.webp" alt="Finished basement family room" width="800" height="600" loading="lazy" onerror="this.parentNode.classList.add('is-empty');this.remove()"></figure>
+          <figure class="photo" data-ph="Photo · finished basement"><img src="/photos/basement.webp" alt="Finished basement family room" width="800" height="600" loading="lazy" onerror="frrPhoto(this)"></figure>
           <h3 class="h-card">Basement finishing</h3>
           <p class="body">Framing, drywall, bathrooms and egress windows, so the space is usable and there's a safe way out.</p>
         </article>

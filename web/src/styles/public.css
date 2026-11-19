@@ -71,3 +71,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 .site-footer a { color: var(--frr-on-dark); }
 .site-footer a:hover { color: #fff; }
 .site-footer__mono { font-family: var(--frr-font-mono); font-size: 12px; color: var(--frr-on-dark-muted); }
+.photo.is-example::after {
+  content: "Example photo"; position: absolute; left: 14px; bottom: 14px;
+  font-family: var(--frr-font-mono); font-size: 11px; color: var(--frr-ink-2);
+  background: var(--frr-canvas); padding: 5px 8px; border-radius: var(--frr-radius-tag);
+}
