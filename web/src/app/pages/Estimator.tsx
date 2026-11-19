@@ -262,7 +262,7 @@ function EstimatorInner({ estimateId, leadId }: { estimateId?: string; leadId?: 
   // ---------------- step: sent ----------------
   if (step === 'sent' && sent) {
     const first = draft.customer.name.split(/\s+/)[0];
-    const textBody = `Hi ${first}, here is your estimate from ${settings.data?.business.name ?? 'First Responders Renovations'}: ${sent.link}`;
+    const textBody = `Hi ${first}, here is your estimate from ${settings.data?.business.name ?? 'First Responder Renovations'}: ${sent.link}`;
     return (
       <div className="page stack narrow">
         <div className="stack" style={{ ['--gap' as string]: '8px' }}>

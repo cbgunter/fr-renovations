@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-First Responders Renovations: a public single-page site plus an admin suite (Today, Leads, Estimator, Calendar, Settings) for a small general contractor in Downers Grove, IL. About 15 customers a month; the whole thing must stay under $5/month on AWS.
+First Responder Renovations: a public single-page site plus an admin suite (Today, Leads, Estimator, Calendar, Settings) for a small general contractor in Downers Grove, IL. About 15 customers a month; the whole thing must stay under $5/month on AWS.
 
 **Read `BRAND.md` before touching any UI.** `brand-reference.html` is the reference implementation; `web/src/styles/brand.css` is a verbatim copy of its tokens and components. The admin user is not technical: one obvious primary action per screen, plain labels, 44px+ targets, status always shown with a word.
 

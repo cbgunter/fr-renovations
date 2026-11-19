@@ -6,7 +6,7 @@
  * Name / address / phone must match the Google Business Profile exactly (BRAND.md section 9).
  */
 export const site = {
-  name: 'First Responders Renovations',
+  name: 'First Responder Renovations',
   url: 'https://renovations.caseyhunter.net',
   ownerName: '[Owner name]',
   phone: '[(630) XXX-XXXX]',

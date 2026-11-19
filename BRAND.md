@@ -1,4 +1,4 @@
-# First Responders Renovations — Brand & UI Guidelines
+# First Responder Renovations — Brand & UI Guidelines
 
 > **For Claude Code:** read this file before building or changing any UI in this project. The companion file `brand-reference.html` is the reference implementation: copy its `:root` tokens and component CSS rather than re-inventing them. If a request conflicts with these rules, follow the request and flag the conflict in your reply.
 
@@ -6,7 +6,7 @@
 
 ## 1. Who we are
 
-**First Responders Renovations** is a general contractor in **Downers Grove, IL**, owned and run by a working firefighter/EMT. We do decks & porches, kitchens, bathrooms, roofing, siding & windows, and basement finishing across DuPage County and the nearby western suburbs.
+**First Responder Renovations** is a general contractor in **Downers Grove, IL**, owned and run by a working firefighter/EMT. We do decks & porches, kitchens, bathrooms, roofing, siding & windows, and basement finishing across DuPage County and the nearby western suburbs.
 
 **Brand idea:** *Built right by someone who's seen what happens when it isn't.*
 
@@ -228,7 +228,7 @@ Inline SVG, 24×24 viewBox, `fill="none"`, `stroke="currentColor"`, `stroke-widt
 
 ## 9. Public-site SEO requirements
 
-- `<title>`: `First Responders Renovations | Decks, Kitchens, Baths & Roofing in Downers Grove, IL`
+- `<title>`: `First Responder Renovations | Decks, Kitchens, Baths & Roofing in Downers Grove, IL`
 - Meta description (~150 chars): firefighter-owned + services + Downers Grove.
 - One H1 (hero). H2 per section: About, Our work, Where we work, Contact.
 - JSON-LD `GeneralContractor` with name, address, phone, hours, `areaServed` listing every town in the coverage list, `sameAs` → Google Business Profile.

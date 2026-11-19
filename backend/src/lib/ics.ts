@@ -16,7 +16,7 @@ export function toIcs(events: CalendarEvent[], calName: string, nowIso: string):
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//First Responders Renovations//Admin//EN',
+    'PRODID:-//First Responder Renovations//Admin//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     `X-WR-CALNAME:${escText(calName)}`,

@@ -22,7 +22,7 @@ export function Shell() {
         <a className="admin-brand" href="/admin">
           <span className="plaid plaid-mark" aria-hidden="true" />
           <span className="stack" style={{ ['--gap' as string]: '0' }}>
-            <b>First Responders</b>
+            <b>First Responder</b>
             <span>Renovations</span>
           </span>
         </a>
@@ -44,7 +44,7 @@ export function Shell() {
       <header className="admin-top">
         <a className="admin-brand" href="/admin">
           <span className="plaid plaid-mark" aria-hidden="true" />
-          <b>First Responders</b>
+          <b>First Responder</b>
         </a>
         <NavLink to="/admin/settings" className="icon-btn" aria-label="Settings">
           <Icon name="settings" />

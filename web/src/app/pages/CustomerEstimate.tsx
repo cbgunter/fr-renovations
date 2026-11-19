@@ -12,7 +12,7 @@ export function CustomerEstimate() {
   const [confirming, setConfirming] = useState(false);
 
   useEffect(() => {
-    document.title = 'Your estimate | First Responders Renovations';
+    document.title = 'Your estimate | First Responder Renovations';
     fetch(`/api/estimates/${encodeURIComponent(id ?? '')}`)
       .then(async (r) => {
         if (!r.ok) throw new Error(r.status === 404 ? "We couldn't find this estimate. Check the link, or give us a call." : 'Something went wrong loading this estimate.');
@@ -43,7 +43,7 @@ export function CustomerEstimate() {
       <div className="plaid plaid-band" aria-hidden="true" />
       <header className="customer__head container row">
         <a className="wordmark" href="/">
-          <b>First Responders</b>
+          <b>First Responder</b>
           <span>Renovations</span>
         </a>
       </header>

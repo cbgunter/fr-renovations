@@ -1,6 +1,6 @@
-# First Responders Renovations
+# First Responder Renovations
 
-Website and admin tools for First Responders Renovations, a firefighter-owned general contractor in Downers Grove, IL.
+Website and admin tools for First Responder Renovations, a firefighter-owned general contractor in Downers Grove, IL.
 
 **Live:** https://renovations.caseyhunter.net · **Admin:** https://renovations.caseyhunter.net/admin
 

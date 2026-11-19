@@ -90,18 +90,18 @@ export class FrRenovationsStack extends cdk.Stack {
       accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
       email: cognito.UserPoolEmail.withSES({
         fromEmail: `noreply@${MAIL_DOMAIN}`,
-        fromName: 'First Responders Renovations',
+        fromName: 'First Responder Renovations',
         sesVerifiedDomain: MAIL_DOMAIN,
         sesRegion: this.region,
       }),
       userInvitation: {
-        emailSubject: 'Your First Responders Renovations admin login',
+        emailSubject: 'Your First Responder Renovations admin login',
         emailBody:
           `Your admin account is ready.<br><br>Go to <a href="${SITE_URL}/admin">${SITE_URL}/admin</a> and sign in with:<br>` +
           'Email: {username}<br>Temporary password: <b>{####}</b><br><br>You will pick your own password the first time you sign in.',
       },
       userVerification: {
-        emailSubject: 'Your First Responders Renovations code',
+        emailSubject: 'Your First Responder Renovations code',
         emailBody: 'Your code is {####}',
       },
       removalPolicy: cdk.RemovalPolicy.RETAIN,
@@ -139,7 +139,7 @@ export class FrRenovationsStack extends cdk.Stack {
         TABLE_NAME: table.tableName,
         WEB_BUCKET: webBucket.bucketName,
         SITE_URL,
-        FROM_EMAIL: `First Responders Renovations <estimates@${MAIL_DOMAIN}>`,
+        FROM_EMAIL: `First Responder Renovations <estimates@${MAIL_DOMAIN}>`,
         NODE_OPTIONS: '--enable-source-maps',
       },
     });
@@ -214,7 +214,7 @@ function handler(event) {
     });
 
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
-      comment: 'First Responders Renovations',
+      comment: 'First Responder Renovations',
       domainNames: [DOMAIN],
       certificate,
       defaultRootObject: 'index.html',

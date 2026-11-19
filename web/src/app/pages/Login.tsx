@@ -81,7 +81,7 @@ export function Login() {
       <main className="login__main">
         <form className="card card-lg stack login__card" onSubmit={submit} style={{ ['--gap' as string]: '18px' }}>
           <a className="wordmark" href="/">
-            <b>First Responders</b>
+            <b>First Responder</b>
             <span>Renovations</span>
           </a>
           <h1 className="h-admin">{titles[mode.m]}</h1>

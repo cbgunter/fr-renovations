@@ -54,7 +54,7 @@ const KIND_IDS = EVENT_KINDS.map((k) => k.id);
 export const MIN_FORM_MS = 2500;
 
 const DEFAULT_SETTINGS = (): Settings => ({
-  business: { name: 'First Responders Renovations', phone: '', email: '', license: '' },
+  business: { name: 'First Responder Renovations', phone: '', email: '', license: '' },
   notifyEmail: '',
   rates: {},
   icsToken: randomBytes(18).toString('base64url'),
